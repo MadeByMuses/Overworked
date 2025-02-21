@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Overworked</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/98.css">
+        <link rel="icon" type="image/x-icon" href="/Images/Overworked.png">
+    </head>
+    <body>
+        <div id="Blocker" style="background-color: rgba(0, 0, 0, 1);"></div>
+        <div id="MissionCheckIn" class="window popupwindow" style="width: 450px;height: 300px;z-index: 1000;">
+            <div class="title-bar">
+                <div class="title-bar-text">Mission Check In</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Close" onclick="BackToMainMenu()"></button>
+                </div>
+            </div>
+            <div class="window-body" id = "MissionCheckInText">
+                <h2>Welcome!</h2>
+                <p>We are pleased to see you are here ready and punctual. The aim of the game is to complete all of your tasks before your bus, easy right? Just start a mission and once started you can see what you are expected to complete before clocking out in the Notepad application, remember that everything must be up to company code, which can be seen in the archived manual database!<br><b>If you are playing with your colleagues</b> then please tick the box below and make sure they are using our manuals from <b>MadeByMuses.github.io/Overworked/Manuals</b> on a seperate device, we must remind that staff are not permitted to share screens so make sure that colleagues cannot observe peers' monitors.</p>
+                <input type="checkbox" id="Multiplayer">
+                <label for="Multiplayer">Multiple people are playing (One group on the site together and others on the manuals)</label>
+                <p>To start please close this window!</p>
+            </div>
+        </div>
+        <div class="homescreen">
+            <div id="Settings" class="settings">
+                <img src="Images/Settings.png" alt="Settings Icon" class="icon">
+                <p class="icon-text">Settings</p>
+            </div>
+            <div id="Missions" class="missions">
+                <img src="Images/Missions.png" alt="Missions Icon" class="icon" style="width: 50px;">
+                <p class="icon-text">Missions</p>
+            </div>
+            <div id="ToDoList" class="todolist"  style="visibility: hidden;" >
+                <img src="Images/ToDoList.png" alt="To-do list Icon" class="icon" style="width: 50px;padding-top: 10px;padding-bottom: 15px;">
+                <p class="icon-text">Todo_List</p>
+            </div>
+            <div id="PersonalPortal" class="personalportal" style="visibility: hidden;">
+                <img src="Images/PersonalPortal.png" alt="PersonalPortal" class="icon" style="width:50px">
+                <p class="icon-text">P-Portal</p>
+            </div>
+            <div id="ManualArchive" class="manualarchive" style="visibility: hidden;" onclick="window.open('manuals.html')">
+                <img src="Images/ManualArchive.png" alt="Manual Archive" class="icon"  style="width: 50px;padding-top: 10px;padding-bottom: 15px;">
+                <p class="icon-text">Manual_Archive</p>
+            </div>
+        </div>
+        <div class="window" style="width: 100vw;position: absolute;bottom: 0;height: 30px;">
+            <div class="window-body">
+                <div style="position: absolute;top: -5px;padding-left: 5px;">
+                    <p style="vertical-align: middle;font-size: 15px;" id="TodayIs">Today is:</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="Timer" class="window timer" style="visibility: hidden;">
+            <div class="title-bar" id="TimerHeader">
+                <div class="title-bar-text">Timer.exe</div>
+            </div>
+            <div class="window-body">
+                <h2 id="TimerText" style="text-align: center;">15:00</h2>
+            </div>
+        </div>
+        
+        <div id="BackgroundWindow">
+            <!--Settings Popup-->
+            <div class="popupwindow window" style="width:675px;height:350px;visibility: hidden;" id="SettingsWindow">
+                <div class="title-bar" id="SettingsWindowHeader">
+                    <div class="title-bar-text">Options</div>
+                    <div class="title-bar-controls">
+                        <button aria-label="Close" onclick="SettingsWindowClose()"></button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr;">
+                        <div>
+                            <ul class="tree-view" style="overflow-y: scroll; max-height:80px;">
+                            <li>Developed by Louis</li>
+                            <li>
+                                <details open>
+                                    <summary>Additional Acknowledgements</summary>
+                                    <ul>
+                                        <li><a href="https://keeptalkinggame.com/">KTANE</a></li>
+                                        <li><a href="https://win98icons.alexmeub.com/">win98icons</a></li>
+                                        <li><a href="https://jdan.github.io/98.css/">98.css</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li>
+                            <details>
+                                <summary>Many thanks to:</summary>
+                                <ul> 
+                                <li>Riley</li>
+                                <li>Ben</li>
+                                </ul>
+                            </details>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Missions Popup-->
+            <div class="popupwindow window" style="width:675px;height:350px;visibility: hidden;" id="MissionsWindow">
+                <div class="title-bar" id="MissionsWindowHeader">
+                    <div class="title-bar-text">Missions</div>
+                    <div class="title-bar-controls">
+                        <button aria-label="Close" onclick="MissionsWindowClose()"></button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr;">
+                        <div>
+                            <ul class="tree-view" style="overflow-y: scroll; max-height:300px;max-width: 300px;">
+                            <li><a onclick="MissionDetailer(-1)" style="cursor: crosshair;">Custom session</a></li>
+                            <li>
+                                <summary>Work-expierence🎉</summary>
+                                <ul>
+                                    <li><a style="cursor: crosshair;">Baby steps</a></li>
+                                </ul>
+                            </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 id="MissionName" style="text-decoration: underline;"></h3>
+                            <div id="CustomMissionPanel" style="visibility: hidden;">
+                                <div class="field-row">
+                                    <label for="TimerSeconds">Seconds: </label>
+                                    <input id="TimerSeconds" type="text" />
+                                </div>
+                                <br>
+                                <fieldset  style="height: 100px;max-height: 100px;overflow-y: scroll;">
+                                    <legend>Todo's</legend>
+                                    <div class="field-row">
+                                        <input type="checkbox" id="Checkbox1">
+                                        <label for="Checkbox1">Cancel Meeting</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <br><br>
+                            <div style="padding-left: 125px;">
+                                <button onclick="MissionStart()" style="visibility: hidden;" id="MissionButton" class="default">Begin</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--ToDoList Popup-->
+            <div class="popupwindow window" style="width: 350px;height:350px;visibility: hidden;" id="ToDoListWindow">
+                <div class="title-bar" id="ToDoListWindowHeader">
+                    <div class="title-bar-text">Todo List</div>
+                    <div class="title-bar-controls">
+                        <button aria-label="Close" onclick="ToDoListWindowClose()"></button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <ul class="tree-view" id="ToDoListText">
+                    </ul>
+                </div>
+            </div>
+            <!--PersonalPortal-->
+            <div class="popupwindow window" style="width: 800px;height:600px;visibility: hidden;" id="PersonalPortalWindow">
+                <div class="title-bar" id="PersonalPortalWindowHeader">
+                    <div class="title-bar-text">Personal Portal</div>
+                    <div class="title-bar-controls">
+                        <button aria-label="Close" onclick="PersonalPortalWindowClose()"></button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div id="PersonalPortalGrid">
+                        <!--<div class="window">
+                            <div class="window-body">
+                                <p>There's so much room for activities!</p>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <!--This scripts connects buttons to open and close and move windows-->
+    <script src="windowmanager.js"></script>
+    <!--sets up missions-->
+    <script src="mission.js"></script>
+    <!--Useful functions-->
+    <script src="useful.js"></script>
+</html>

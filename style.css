@@ -1,0 +1,124 @@
+html, body{
+    background-color: #008080;
+    padding: 0;
+    margin: 0;
+    font-family: "Pixelated MS Sans Serif", Arial;
+    overflow: hidden;
+}
+/*Editing 98.css*/
+.title-bar{
+    cursor: grab;
+}
+.homescreen{
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 97vh;
+    width: 150px;
+    top: 0;
+    left: 0;
+    text-align: center;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+.homescreen *{
+    cursor: pointer;
+}
+.settings{
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+}
+.missions{
+    grid-column: 1;
+    grid-row: 2;
+    position: relative;
+}
+.todolist{
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+}
+.personalportal{
+    grid-column: 1;
+    grid-row: 3;
+    position: relative;
+}
+.manualarchive{
+    grid-column: 3;
+    grid-row: 1;
+    position: relative;
+}
+.icon-text{
+    text-align: center;
+    font-family: "Pixelated MS Sans Serif", Arial;
+    color: white;
+    font-size: 12px;
+    margin: 0;
+}
+.icon{
+    width: 75px;
+    image-rendering: pixelated;
+}
+#BackgroundWindow{
+    position: absolute;
+    background-color: #00000040;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    z-index:9;
+    visibility:hidden;
+}
+.popupwindow{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-55%);
+    z-index: 10;
+}
+#Blocker{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    transition: background-color 0.5s ease-in-out;
+    z-index: 100;
+}
+#PersonalPortalGrid{
+    display: grid;
+    grid-template-columns: 375px 375px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    justify-content: space-around;
+}
+#PersonalPortalGrid .window{
+    width: 375px;
+    height: 375px;
+}
+.timer {
+    width: 175px;
+    height: 125px;
+    position: absolute;
+    top: 3vh;
+    right: 20px;
+    z-index: 8;
+}
+.manualgrid{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    column-gap: 100px;
+}
+@media only screen and (max-width: 750px) {
+    .manualgrid{
+      grid-template-columns: auto auto auto;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .manualgrid{
+      grid-template-columns: auto;
+    }
+}

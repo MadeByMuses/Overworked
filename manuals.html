@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Manual Archive</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/98.css">
+        <link rel="icon" type="image/x-icon" href="/Images/ManualArchive.png">
+
+        <!--Preload images-->
+        <link rel="prefetch" href="Images/OfficialPDF.png">
+        <link rel="prefetch" href="Images/PersonalPortalPDF.png">
+
+        <style>
+        .ManualPDFIcon img{
+            display: block;
+            margin:auto;
+        }
+        </style>
+    </head>
+    <body>
+    <div class="window">
+        <div class="window-body">
+            <h4 style="text-align: center;">Manual Archive</h4>
+            <div style="width:100%;display: flex;justify-content: center;">
+                <div class="field-row">
+                    <label for="Keyword">Keyword</label>
+                    <input id="Keyword" type="text" />
+                </div>
+                <button onclick="updateValue()" style="margin-left: 5px;">FIND</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div style="width:100%;display: flex;justify-content: center;">
+        <div class="manualgrid" id="ManualGrid">
+        </div>
+    </div>
+    </body>
+    <script src="manual.js"></script>
+</html>
