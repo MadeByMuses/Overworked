@@ -33,10 +33,28 @@ Manuals[3] = new Array("error","PDF","delete","deleted","unwanted","ignore","pic
 const Manual3 =`
             <div id="Manual3">
                 <div class="ManualPDFIcon" onclick="OpenPDF(3)">
-                    <img src="Images/OfficialPDF.png" alt="OfficialPDF Icon" class="icon" style="width: 50px;">
+                    <img src="Images/DescriptionPDF.png" alt="DesciprtionPDF Icon" class="icon" style="width: 50px;">
                 </div>
                 <p class="icon-text">This cannot be deleted</p>
             </div>`;
+// What to do if a staff member is cancelled
+Manuals[4] = new Array("cancel","cancelled","staff","media","controversy","controversal","stop","important","surgery")
+const Manual4 =`
+            <div id="Manual4">
+                <div class="ManualPDFIcon" onclick="OpenPDF(4)">
+                    <img src="Images/DescriptionPDF.png" alt="DescritionPDF Icon" class="icon" style="width: 50px;">
+                </div>
+                <p class="icon-text">What to do if you are cancelled</p>
+            </div>`;
+// staff bonuses
+Manuals[5] = new Array("finance","money","staff","wages","bonuses","extra","add","increase","change","order","rank","detail")
+const Manual5 =`
+            <div id="Manual5">
+                <div class="ManualPDFIcon" onclick="OpenPDF(5)">
+                    <img src="Images/PersonalPortalPDF.png" alt="PersonalPortalPDF Icon" class="icon" style="width: 50px;">
+                </div>
+                <p class="icon-text">Staff bonuses</p>
+            </div>`
 function updateValue() {
     ManualGrid.innerHTML = ``;
     console.log(document.getElementById("Keyword").value)
@@ -55,6 +73,12 @@ function updateValue() {
                 case(3):
                     ManualGrid.innerHTML += Manual3;
                     break;
+                case(4):
+                    ManualGrid.innerHTML += Manual4;
+                    break;
+                case(5):
+                    ManualGrid.innerHTML += Manual5;
+                    break;
            }
         }
     }
@@ -65,13 +89,32 @@ function OpenPDF(pdfnumber){
     switch (pdfnumber){
         case(0):
             myWindow.document.open();
-            myWindow.document.write(`<embed src="PDFS/WelcomeManual.pdf" width="100%" height="100%" />`);
+            myWindow.document.write(`<embed src="PDFs/WelcomeManual.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
             break;
         case(1):
             myWindow.document.open();
-            myWindow.document.write(`<embed src="PDFS/ToCancelAMeeting.pdf" width="100%" height="100%" />`);
+            myWindow.document.write(`<embed src="PDFs/ToCancelAMeeting.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
             break;
+        case(2):
+            myWindow.document.open();
+            myWindow.document.write(`<embed src="PDFs/TranscriptStockMeeting.pdf" width="100%" height="100%" />`);
+            myWindow.document.close();
+            break;
+        case(3):
+            myWindow.document.open();
+            myWindow.document.write(`<embed src="PDFs/ThisCannotBeDeleted.pdf" width="100%" height="100%" />`);
+            myWindow.document.close();
+            break;
+        case(4):
+            myWindow.document.open();
+            myWindow.document.write(`<embed src="PDFs/IfYouAreCancelled.pdf" width="100%" height="100%" />`);
+            myWindow.document.close();
+            break;
+        case(5):
+            myWindow.document.open();
+            myWindow.document.write(`<embed src="PDFs/OrderBonuses.pdf" width="100%" height="100%" />`);
+            myWindow.document.close();
     }
 }

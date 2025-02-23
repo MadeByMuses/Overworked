@@ -136,15 +136,15 @@ let TimerText = setInterval(function() {
   document.getElementById("TimerText").innerHTML =minutes + ":" + seconds;
 
   // If the count down is finished, write some text
-  console.log(distance)
-  if(Lives == -1){
+  if(typeof Lives !== 'undefined' && Lives == -1){
     document.getElementById("TimerText").innerHTML = "XX:XX";
   }
   if (distance < 0) {
     if (Lives != -1){Lives = 0;}
     countDownDate = AddMinutesToDate(countDownDate,65535);
   }
-}, 1000);
+}, 100);
+
 
 function BackToMainMenu(){
   setTimeout(function(){Transition(true)},1000)

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="style.css" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/98.css">
-        <link rel="icon" type="image/x-icon" href="/Images/Overworked.png">
+        <link rel="icon" type="image/x-icon" href="Images/Overworked.png">
     </head>
     <body>
         <div id="Blocker" style="background-color: rgba(0, 0, 0, 1);"></div>
@@ -19,7 +19,7 @@
             </div>
             <div class="window-body" id = "MissionCheckInText">
                 <h2>Welcome!</h2>
-                <p>We are pleased to see you are here ready and punctual. The aim of the game is to complete all of your tasks before your bus, easy right? Just start a mission and once started you can see what you are expected to complete before clocking out in the Notepad application, remember that everything must be up to company code, which can be seen in the archived manual database!<br><b>If you are playing with your colleagues</b> then please tick the box below and make sure they are using our manuals from <b>MadeByMuses.github.io/Overworked/Manuals</b> on a seperate device, we must remind that staff are not permitted to share screens so make sure that colleagues cannot observe peers' monitors.</p>
+                <p>We are pleased to see you are here ready and punctual. The aim of the game is to complete all of your tasks before your bus, easy right? Just start a mission and once started you can see what you are expected to complete before clocking out in the Notepad application, remember that everything must be up to Omnicorp's code, which can be seen in the archived manual database!<br><b>If you are playing with your colleagues</b> then please tick the box below and make sure they are using our manuals from <b>madebymuses.github.io/Overworked/manuals.html</b> on a seperate device, we must remind that staff are not permitted to share screens so make sure that colleagues cannot observe peers' monitors.</p>
                 <input type="checkbox" id="Multiplayer">
                 <label for="Multiplayer">Multiple people are playing (One group on the site together and others on the manuals)</label>
                 <p>To start please close this window!</p>
@@ -128,7 +128,7 @@
                             <div id="CustomMissionPanel" style="visibility: hidden;">
                                 <div class="field-row">
                                     <label for="TimerSeconds">Seconds: </label>
-                                    <input id="TimerSeconds" type="text" />
+                                    <input id="TimerSeconds" type="text" /></label>
                                 </div>
                                 <br>
                                 <fieldset  style="height: 100px;max-height: 100px;overflow-y: scroll;">
@@ -136,6 +136,10 @@
                                     <div class="field-row">
                                         <input type="checkbox" id="Checkbox1">
                                         <label for="Checkbox1">Cancel Meeting</label>
+                                    </div>
+                                    <div class="field-row">
+                                        <input type="checkbox" id="Checkbox2">
+                                        <label for="Checkbox2">Staff Bonuses</label>
                                     </div>
                                 </fieldset>
                             </div>
@@ -180,10 +184,10 @@
             </div>
         </div>
     </body>
-    <!--This scripts connects buttons to open and close and move windows-->
-    <script src="windowmanager.js"></script>
     <!--sets up missions-->
     <script src="mission.js"></script>
+    <!--This scripts connects buttons to open and close and move windows-->
+    <script src="windowmanager.js"></script>
     <!--Useful functions-->
     <script src="useful.js"></script>
 </html>

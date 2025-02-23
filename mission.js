@@ -1,4 +1,4 @@
-//Below is teh var that tells which Mission has the ID
+//Below is the var that tells which Mission has the ID
 var AssignedMissions = [];
 var MissionsToDoLeft = -1;
 var Metadata = [];
@@ -15,14 +15,16 @@ function MissionDetailer(id) {
 function MissionStart() {
     AssignedMissions = [];
     let CancelMeeting = document.getElementById("Checkbox1").checked;
+    let StaffBonuses = document.getElementById("Checkbox2").checked;
 
-    if (!CancelMeeting){
+    if (!CancelMeeting && !StaffBonuses){
         alert("Please pick at least one todo");
     }
-    else if (isNaN(document.getElementById("TimerSeconds").innerHTML)){
-        alert("Please insert the time limit for the custom mission")
+    else if (isNaN(document.getElementById("TimerSeconds").innerHTML) || (document.getElementById("TimerSeconds").innerHTML.indexOf(' ') >= 0)){
+        alert("Please insert the time limit for the custom mission or no spaces in the box")
     }
     else{ 
+        Metadata = [];
         LastMissionInteracted = 0;
         let IDsOfTasks = [];
         //Animate close
@@ -32,6 +34,7 @@ function MissionStart() {
 
         //Checks if it is tick and adds it to the list
         if(CancelMeeting){IDsOfTasks.push(1)}
+        if(StaffBonuses){IDsOfTasks.push(2)}
         shuffle(IDsOfTasks);
         document.getElementById("ToDoListText").innerHTML=``;
         document.getElementById("PersonalPortalGrid").innerHTML = ``;
@@ -54,12 +57,15 @@ function MissionStart() {
 }
  
 function AddMission(ID, index) {
+    console.log(ID + "..." + index)
     const ToDoListText = document.getElementById("ToDoListText");
-    console.log("HEY")
     switch (ID){
         case 1:
-            console.log(index)
             ToDoListText.appendChild(CreateCancelMeeting(index));
+            break;
+        case 2:
+            ToDoListText.appendChild(CreateStaffBonuses(index));
+            break;
     }
 }
 
@@ -75,8 +81,6 @@ function CreateCancelMeeting(MissionIndex) {
     const Meetings = ["CEO","Orange County Juice","Read Books","Reeded Books","In Metahouse","No Meeting Corporation","Brick Music","Purple TV","Sea-Aeroplanes"]
     shuffle(Meetings); 
     Metadata.push(GetRandomInt(2,6))
-    console.log(Metadata)
-    console.log(97+String(Metadata[MissionIndex]).substring(0,1));
     document.getElementById("PersonalPortalGrid").innerHTML += `
         <div class="window">
             <div class="window-body" id="CancelMeeting`+MissionIndex+`">
@@ -99,6 +103,65 @@ function CreateCancelMeeting(MissionIndex) {
     return node;
 }
 
+function CreateStaffBonuses(MissionIndex) {
+    document.getElementById("PersonalPortal").style.visibility = "visible";
+    AssignedMissions.push("StaffBonuses");
+    const StaffBonusesPN = ["Add staff bonuses","Order bonuses for staff","Update extras for staff wages","Order staff for finacial bonuses","Order staff bonuses","Add ranking for staff's bonuses"]
+    const node = document.createElement('p')
+    node.appendChild(document.createTextNode(StaffBonusesPN[Math.floor(Math.random()*StaffBonusesPN.length)]))
+    node.setAttribute('id',"StaffBonuses" + String(MissionIndex))
+
+    //Add element
+    const Meetings = ["CEO","Orange County Juice","Read Books","Reeded Books","In Metahouse","No Meeting Corporation","Brick Music","Purple TV","Sea-Aeroplanes"]
+    shuffle(Meetings); 
+    Metadata.push(GetRandomInt(0,4))
+    let PossibleOptions = [0,1,2,3,4,5,6,7]
+    shuffle(PossibleOptions)
+    const Column1 = ["Timothy","Lisa","Chris","Henry","Kevin","Mark","Marc","Juliet"]
+    const Column2 = ["Kevin","Hannah","Ryan","Sarah","Lily","Brenda","Amelia","Edgar"]
+    const Column3 = ["Lilly","Louie","Henry","Romeo","Ryen","Owen","Oliver","Una"]
+    const Column4 = ["Oonagh","Tim","Sara","Marc","Luke","Louis","Hanna","Riley"]
+    document.getElementById("PersonalPortalGrid").innerHTML += `
+        <div class="window">
+            <div class="window-body" id="StaffBonuses`+MissionIndex+`">
+                <h3>Staff bonuses system</h3>
+                <p>Please pick one meeting to cancel below:</p>`
+    for (let i = 97; i < (97+4);i++){
+        document.getElementById("StaffBonuses"+MissionIndex).innerHTML += `
+            <div class="field-row">
+                <select id="StaffBonuses`+MissionIndex+String.fromCharCode(i)+`">
+                    <option value=0>Select ranking</option>
+                    <option value=4>1st to get the Bonus</option>
+                    <option value=3>2nd in queue to get the Bonus</option>
+                    <option value=2>3rd expected to recieve the Bonus</option>
+                    <option value=1>4th likely to be award with the Bonus</option>
+                </select>
+                <label id="StaffBonusesText`+MissionIndex+String.fromCharCode(i)+`">`
+        if (Metadata[MissionIndex] == 1){
+            document.getElementById("StaffBonusesText"+MissionIndex+String.fromCharCode(i)).innerHTML += Column1[PossibleOptions[i-97]]
+        }
+        else if (Metadata[MissionIndex] == 2){
+            document.getElementById("StaffBonusesText"+MissionIndex+String.fromCharCode(i)).innerHTML += Column2[PossibleOptions[i-97]]
+        }
+        else if (Metadata[MissionIndex] == 3){
+            document.getElementById("StaffBonusesText"+MissionIndex+String.fromCharCode(i)).innerHTML += Column3[PossibleOptions[i-97]]
+        }
+        else if (Metadata[MissionIndex] == 4){
+            document.getElementById("StaffBonusesText"+MissionIndex+String.fromCharCode(i)).innerHTML += Column4[PossibleOptions[i-97]]
+        }
+        document.getElementById("StaffBonuses"+MissionIndex).innerHTML += `</label>
+            </div>
+        `
+    }
+    document.getElementById("StaffBonuses"+MissionIndex).innerHTML += `
+            </div>
+            <br>
+            <button onclick="StaffBonusesCheck(`+MissionIndex+`)"style="margin-left: 20px;">Confirm Selection</button>
+            <p id="StaffBonusesConfirmation`+MissionIndex+`"></p>
+        </div>`
+    return node;
+}
+
 function CancelMeetingCheck(MissionIndex){
     LastMissionInteracted = 1;
     let ThingsToChoose = [];
@@ -106,9 +169,7 @@ function CancelMeetingCheck(MissionIndex){
         ThingsToChoose.push(document.getElementById("CancelMeetingRadio"+MissionIndex+String.fromCharCode(i)+"text").innerHTML)
     }
     if (ThingsToChoose.length == 3){
-        console.log(ThingsToChoose[1])
         if (ThingsToChoose[1] == "Orange County Juice" || ThingsToChoose[1] == "Read Books"){
-            console.log("A")
             if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").checked == true){
                     MissionComplete(MissionIndex,1);
@@ -127,7 +188,6 @@ function CancelMeetingCheck(MissionIndex){
             }
         }
         else if(ThingsToChoose.includes("No Meeting Corporation")){
-            console.log("B")
             if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").checked == true){
                     MissionComplete(MissionIndex,1);
@@ -146,7 +206,6 @@ function CancelMeetingCheck(MissionIndex){
             }
         }
         else if(!ThingsToChoose.includes("Brick Music")){
-            console.log("C")
             if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").checked == true){
                     MissionComplete(MissionIndex,1);
@@ -165,7 +224,6 @@ function CancelMeetingCheck(MissionIndex){
             }
         }
         else{
-            console.log("D")
             if (document.getElementById("CancelMeetingRadio"+MissionIndex+"b").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"b").checked == true){
                     MissionComplete(MissionIndex,1);
@@ -468,12 +526,48 @@ function CancelMeetingCheck(MissionIndex){
     }
 }  
 
+function StaffBonusesCheck(MissionIndex){
+    LastMissionInteracted = 2;
+    const Column1 = ["Timothy","Lisa","Chris","Henry","Kevin","Mark","Marc","Juliet"]
+    const Column2 = ["Kevin","Hannah","Ryan","Sarah","Lily","Brenda","Amelia","Edgar"]
+    const Column3 = ["Lilly","Louie","Henry","Romeo","Ryen","Owen","Oliver","Una"]
+    const Column4 = ["Oonagh","Tim","Sara","Marc","Luke","Louis","Hanna","Riley"]
+    let NameID = new Array;
+    for (let i =0; i< 4; i++){
+        if (Metadata[MissionIndex] == 1){
+            NameID.push(Column1.indexOf(document.getElementById("StaffBonusesText"+MissionIndex+String.fromCharCode(i+97)).innerHTML))
+        }
+        else if (Metadata[MissionIndex] == 2){
+            NameID.push(Column2.indexOf(document.getElementById("StaffBonusesText"+MissionIndex+String.fromCharCode(i+97)).innerHTML))
+        }
+        else if (Metadata[MissionIndex] == 3){
+            NameID.push(Column3.indexOf(document.getElementById("StaffBonusesText"+MissionIndex+String.fromCharCode(i+97)).innerHTML))
+        }
+        else if (Metadata[MissionIndex] == 4){
+            NameID.push(Column4.indexOf(document.getElementById("StaffBonusesText"+MissionIndex+String.fromCharCode(i+97)).innerHTML))
+        }
+    }
+    console.log(NameID);
+    let NameIDRanked = rankings(NameID);
+    console.log(NameIDRanked);
+    if (NameIDRanked[0] == document.getElementById("StaffBonuses"+MissionIndex+"a").value && NameIDRanked[1] == document.getElementById("StaffBonuses"+MissionIndex+"b").value && NameIDRanked[2] == document.getElementById("StaffBonuses"+MissionIndex+"c").value && NameIDRanked[3] == document.getElementById("StaffBonuses"+MissionIndex+"d").value ){
+        MissionComplete(MissionIndex,2)
+    }
+    else{
+        MissionFail(MissionIndex,2)
+    }
+}
+
 function MissionComplete(MissionIndex,MissionID){
     document.getElementById("ToDoListText").children[MissionIndex].style.textDecoration = "line-through";
     MissionsToDoLeft -= 1;
     if (MissionID == 1){
         document.getElementById("CancelMeetingConfirmation"+MissionIndex).innerHTML = "Your request has been accepted!"
         document.getElementById("CancelMeetingConfirmation"+MissionIndex).style.color = "ForestGreen";
+    }
+    else if(MissionID == 2){
+        document.getElementById("StaffBonusesConfirmation"+MissionIndex).innerHTML = "The ranking is correctly chosen!"
+        document.getElementById("StaffBonusesConfirmation"+MissionIndex).style.color = "ForestGreen";
     }
 }
 
@@ -482,6 +576,10 @@ function MissionFail(MissionIndex,MissionID){
     if (MissionID == 1){
         document.getElementById("CancelMeetingConfirmation"+MissionIndex).innerHTML = "Your request has FAILED since it is against policy's code"
         document.getElementById("CancelMeetingConfirmation"+MissionIndex).style.color = "Red";
+    }
+    else if(MissionID == 2){
+        document.getElementById("StaffBonusesConfirmation"+MissionIndex).innerHTML = "This ranking has failed Omnicorp standards"
+        document.getElementById("StaffBonusesConfirmation"+MissionIndex).style.color = "Red";
     }
 }
 
@@ -492,14 +590,17 @@ setInterval(function(){
         Transition(false)
         document.getElementById("MissionCheckInText").innerHTML = `
         <h2>You have failed...</h2>
-        <p>You have failed miserably, we must remind you that the current you is not fit for this company. Therefore, with support of HR, we have terminated pay for today's work. We were specifically shocked at your `
+        <p>You have failed miserably, we must remind you that the current you is not fit for Omnicorp. Therefore, with support of HR, we have terminated pay for today's work. We were specifically shocked at your `
         if (LastMissionInteracted == 0){
             document.getElementById("MissionCheckInText").innerHTML += `inability to effectively time manage.`
         }
         else if (LastMissionInteracted == 1){
             document.getElementById("MissionCheckInText").innerHTML += `pathetic attempt to cancel a meeting.`
         }
-        document.getElementById("MissionCheckInText").innerHTML += `<br><br>We hope you can improve for the sake of our proud company.<br>You may close this message...`
+        else if (LastMissionInteracted == 2){
+            document.getElementById("MissionCheckInText").innerHTML += `disappointing enthusiams to order bonuses for Omnicorp staff.`
+        }
+        document.getElementById("MissionCheckInText").innerHTML += `<br><br>We hope you can improve for the sake of our proud company, Omnicorp.<br>You may close this message...`
         setTimeout(function(){document.getElementById("MissionCheckIn").style.visibility = "visible";PersonalPortalWindowClose();MissionsWindowClose();ToDoListWindowClose();SettingsWindowClose()},400)
     }
     else if(MissionsToDoLeft == 0){

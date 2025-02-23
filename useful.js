@@ -23,3 +23,12 @@ function shuffle(array) {
 function AddMinutesToDate(date, minutes) {
     return new Date(date.getTime() + minutes*60000);
 }
+
+function rankings(array) {
+    return array
+      .map((v, i) => [v, i])
+      .sort((a, b) => b[0] - a[0])
+      .map((a, i) => [...a, i + 1])
+      .sort((a, b) => a[1] - b[1])
+      .map(a => a[2]);
+}
