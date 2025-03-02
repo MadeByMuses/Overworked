@@ -2,7 +2,7 @@ var Manuals = new Array();
 const ManualGrid = document.getElementById("ManualGrid")
 
 // Welcome Manual
-Manuals[0] = new Array("welcome","introduction","help","basic","basics","idk","picasso");
+Manuals[0] = new Array("welcome","introduction","help","basic","basics","idk","picasso","???","basics","what","who","when","where","why","?","home","entrance","how","what");
 const Manual0 = `
             <div id="Manual0" onclick="OpenPDF(0)">
                 <div class="ManualPDFIcon">
@@ -11,7 +11,7 @@ const Manual0 = `
                 <p class="icon-text">Welcome Manual</p>
             </div>`;
 // To cancel a meeting
-Manuals[1] = new Array("cancel","meeting","personalportal","p-portal","ppportal","remove","delete","clear","meetings","session");
+Manuals[1] = new Array("cancel","meeting","personalportal","p-portal","personalportal","remove","delete","clear","meetings","session","reject","cancellation","pportal","meet");
 const Manual1 = `
             <div id="Manual1">
                 <div class="ManualPDFIcon" onclick="OpenPDF(1)">
@@ -47,7 +47,7 @@ const Manual4 =`
                 <p class="icon-text">What to do if you are cancelled</p>
             </div>`;
 // staff bonuses
-Manuals[5] = new Array("finance","money","staff","wages","bonuses","extra","add","increase","change","order","rank","detail")
+Manuals[5] = new Array("finance","money","staff","wages","bonuses","extra","add","increase","change","order","rank","detail","bonus","money")
 const Manual5 =`
             <div id="Manual5">
                 <div class="ManualPDFIcon" onclick="OpenPDF(5)">

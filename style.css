@@ -50,6 +50,11 @@ html, body{
     grid-row: 1;
     position: relative;
 }
+.tutorial{
+    grid-column: 5;
+    grid-row: 2;
+    position: relative;
+}
 .icon-text{
     text-align: center;
     font-family: "Pixelated MS Sans Serif", Arial;

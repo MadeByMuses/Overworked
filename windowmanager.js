@@ -7,6 +7,7 @@ DragElement(document.getElementById("SettingsWindow"));
 DragElement(document.getElementById("MissionsWindow"));
 DragElement(document.getElementById("ToDoListWindow"));
 DragElement(document.getElementById("PersonalPortalWindow"));
+DragElement(document.getElementById("TutorialWindow"))
 DragElement(document.getElementById("Timer"))
 function DragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -109,6 +110,20 @@ function PersonalPortalWindowClose() {
     document.getElementById('BackgroundWindow').style.visibility = "hidden";
 }
 
+document.getElementById('Tutorial').addEventListener('click', TutorialWindowOpen);
+function TutorialWindowOpen() {
+  if(!windowopen){
+    windowopen = true
+    document.getElementById('TutorialWindow').style.visibility = "visible";
+    document.getElementById('BackgroundWindow').style.visibility = "visible";
+  }
+}
+function TutorialWindowClose() {
+    windowopen = false
+    document.getElementById('TutorialWindow').style.visibility = "hidden";
+    document.getElementById('BackgroundWindow').style.visibility = "hidden";
+}
+
 
 
 
@@ -148,11 +163,13 @@ let TimerText = setInterval(function() {
 
 function BackToMainMenu(){
   setTimeout(function(){Transition(true)},1000)
-  if (document.getElementById("Multiplayer") !== null){
-    if (document.getElementById("Multiplayer").checked == false){
-      document.getElementById("ManualArchive").style.visibility = "visible";
+  if (document.getElementById("TutorialCheck") !== null){
+    if (document.getElementById("TutorialCheck").checked == false){
+      document.getElementById("Tutorial").style.visibility = "visible";
     }
+
   }
+  document.getElementById("ManualArchive").style.visibility = "hidden";
   document.getElementById("MissionCheckIn").style.visibility = "hidden";
   document.getElementById("Timer").style.visibility = "hidden";
   document.getElementById("ToDoList").style.visibility = "hidden";

@@ -20,8 +20,8 @@
             <div class="window-body" id = "MissionCheckInText">
                 <h2>Welcome!</h2>
                 <p>We are pleased to see you are here ready and punctual. The aim of the game is to complete all of your tasks before your bus, easy right? Just start a mission and once started you can see what you are expected to complete before clocking out in the Notepad application, remember that everything must be up to Omnicorp's code, which can be seen in the archived manual database!<br><b>If you are playing with your colleagues</b> then please tick the box below and make sure they are using our manuals from <b>madebymuses.github.io/Overworked/manuals.html</b> on a seperate device, we must remind that staff are not permitted to share screens so make sure that colleagues cannot observe peers' monitors.</p>
-                <input type="checkbox" id="Multiplayer">
-                <label for="Multiplayer">Multiple people are playing (One group on the site together and others on the manuals)</label>
+                <input type="checkbox" id="TutorialCheck">
+                <label for="TutorialCheck">Click if you do not need the tutorial!</label>
                 <p>To start please close this window!</p>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 <p class="icon-text">Settings</p>
             </div>
             <div id="Missions" class="missions">
-                <img src="Images/Missions.png" alt="Missions Icon" class="icon" style="width: 50px;">
+                <img src="Images/Missions.png" alt="Missions Icon" class="icon" style="width: 50px;padding-top: 10px;padding-bottom: 15px;">
                 <p class="icon-text">Missions</p>
             </div>
             <div id="ToDoList" class="todolist"  style="visibility: hidden;" >
@@ -45,6 +45,10 @@
             <div id="ManualArchive" class="manualarchive" style="visibility: hidden;" onclick="window.open('manuals.html')">
                 <img src="Images/ManualArchive.png" alt="Manual Archive" class="icon"  style="width: 50px;padding-top: 10px;padding-bottom: 15px;">
                 <p class="icon-text">Manual_Archive</p>
+            </div>
+            <div id="Tutorial" class="tutorial" style="visibility: hidden;">
+                <img src="Images/Tutorial.png" alt="Tutorial" class="icon"  style="width: 50px;padding-top: 10px;padding-bottom: 15px;">
+                <p class="icon-text">Tutorial</p>
             </div>
         </div>
         <div class="window" style="width: 100vw;position: absolute;bottom: 0;height: 30px;">
@@ -94,6 +98,7 @@
                                 <ul> 
                                 <li>Riley</li>
                                 <li>Ben</li>
+                                <li>Luke</li>
                                 </ul>
                             </details>
                             </li>
@@ -180,6 +185,21 @@
                             </div>
                         </div>-->
                     </div>
+                </div>
+            </div>
+            <!--Tutorial-->
+            <div class="popupwindow window" style="width: 400px;height:400px;visibility: hidden;" id="TutorialWindow">
+                <div class="title-bar" id="TutorialWindowHeader">
+                    <div class="title-bar-text">Tutorial Window</div>
+                    <div class="title-bar-controls">
+                        <button aria-label="Close" onclick="TutorialWindowClose()"></button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <p>As mentioned on your job application, when you wish to start work- click on <b>Missions</b> and either select a custom mission of your choosing or follow out regulated missions that Omnicorp has provided with no extra charge (Note there will be a charge after we register you not having a financial charge with the free ammentity.)</p>
+                    <h2>To fufill Omnicorp's goals...</h2>
+                    <p>You must find what to do on <b>The Todo Application</b>, before looking at what to do in the <b>Manual Archives</b>. Insert a keyword relating to the Todo mission and find the correct Manual, once aquired the manual will list out how to fufill our expectations of you.</p>
+                    <p>We recommend to clear your workspace's tabs and to also close every window with the close button in the top right of every popup window</p>
                 </div>
             </div>
         </div>

@@ -42,9 +42,10 @@ function MissionStart() {
         MissionsToDoLeft = AssignedMissions.length;
         
         //Show icon
-        document.getElementById("ToDoList").style.visibility = "visible";
         setTimeout(function(){
             Transition(true);
+            document.getElementById("ToDoList").style.visibility = "visible";
+            document.getElementById("ManualArchive").style.visibility = "visible";
             document.getElementById("Timer").style.visibility = "visible";
             Lives = 3;
         },1000);
@@ -163,14 +164,16 @@ function CreateStaffBonuses(MissionIndex) {
 }
 
 function CancelMeetingCheck(MissionIndex){
+    console.log(document.getElementById("CancelMeetingRadio"+MissionIndex+"a").innerHTML);
     LastMissionInteracted = 1;
     let ThingsToChoose = [];
     for (let i = 97; i <= (97+Number(String(Metadata[MissionIndex]).substring(0,1)));i++){
         ThingsToChoose.push(document.getElementById("CancelMeetingRadio"+MissionIndex+String.fromCharCode(i)+"text").innerHTML)
     }
     if (ThingsToChoose.length == 3){
+
         if (ThingsToChoose[1] == "Orange County Juice" || ThingsToChoose[1] == "Read Books"){
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"atext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -188,7 +191,7 @@ function CancelMeetingCheck(MissionIndex){
             }
         }
         else if(ThingsToChoose.includes("No Meeting Corporation")){
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"atext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -206,7 +209,7 @@ function CancelMeetingCheck(MissionIndex){
             }
         }
         else if(!ThingsToChoose.includes("Brick Music")){
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"ctext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -224,7 +227,7 @@ function CancelMeetingCheck(MissionIndex){
             }
         }
         else{
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"b").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"btext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"b").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -252,7 +255,7 @@ function CancelMeetingCheck(MissionIndex){
             }
         }
         else if (ThingsToChoose.includes("Purple TV") && ThingsToChoose.includes("Reeded Books") && (Number(ThingsToChoose.indexOf("Purple TV"))<Number(ThingsToChoose.indexOf("Reeded Books")))){
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"d").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"dtext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"d").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -270,7 +273,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else if (ThingsToChoose.indexOf("Orange County Juice") == 3 || ThingsToChoose.indexOf("Orange County Juice") == 2){
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"ctext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -288,7 +291,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else if (!ThingsToChoose.includes("Brick Music")){         
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"atext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -306,7 +309,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else{    
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"d").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"dtext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"d").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -326,7 +329,7 @@ function CancelMeetingCheck(MissionIndex){
     }
     else if (ThingsToChoose.length == 5){
         if (ThingsToChoose.includes("In Metahouse") && TodayDate.getDay == 2){    
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"ctext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -344,7 +347,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else if (ThingsToChoose.includes("Purple TV") && ThingsToChoose.includes("Sea-Aeroplanes") && ThingsToChoose.includes("Read Books")){    
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"b").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"btext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"b").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -396,7 +399,7 @@ function CancelMeetingCheck(MissionIndex){
             }
         }
         else if (ThingsToChoose.includes("No Meeting Corporation") && ThingsToChoose.indexOf("No Meeting Corporation") != 0 && ThingsToChoose.indexOf("No Meeting Corporation") != 4){    
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"b").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"btext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"b").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -414,7 +417,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else{
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"d").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"dtext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"d").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -434,7 +437,7 @@ function CancelMeetingCheck(MissionIndex){
     }
     else{
         if (ThingsToChoose.includes("In Meeting Corporation") && !ThingsToChoose.includes("Sea-Aeroplanes")){ 
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"e").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"etext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"e").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -452,7 +455,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else if(ThingsToChoose.indexOf("Purple TV") != 5 && ThingsToChoose.includes("Purple TV") && (TodayDate.getDay == 0 || TodayDate.getDay == 2)){
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"atext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"a").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -470,7 +473,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else if(ThingsToChoose.includes("Orange County Juice") && ThingsToChoose.includes("Reeded Books")){
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"ctext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"c").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -488,7 +491,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else if(!ThingsToChoose.includes("Brick Music")){
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"e").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"etext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"e").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
@@ -506,7 +509,7 @@ function CancelMeetingCheck(MissionIndex){
             } 
         }
         else{
-            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"f").innerHTML != "CEO"){
+            if (document.getElementById("CancelMeetingRadio"+MissionIndex+"ftext").innerHTML != "CEO"){
                 if (document.getElementById("CancelMeetingRadio"+MissionIndex+"f").checked == true){
                     MissionComplete(MissionIndex,1);
                 }
