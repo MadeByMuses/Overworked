@@ -81,7 +81,7 @@ function CreateCancelMeeting(MissionIndex) {
     //Add element
     const Meetings = ["CEO","Orange County Juice","Read Books","Reeded Books","In Metahouse","No Meeting Corporation","Brick Music","Purple TV","Sea-Aeroplanes"]
     shuffle(Meetings); 
-    Metadata.push(GetRandomInt(2,6))
+    Metadata.push(Math.random(4)+3)
     document.getElementById("PersonalPortalGrid").innerHTML += `
         <div class="window">
             <div class="window-body" id="CancelMeeting`+MissionIndex+`">
@@ -115,7 +115,7 @@ function CreateStaffBonuses(MissionIndex) {
     //Add element
     const Meetings = ["CEO","Orange County Juice","Read Books","Reeded Books","In Metahouse","No Meeting Corporation","Brick Music","Purple TV","Sea-Aeroplanes"]
     shuffle(Meetings); 
-    Metadata.push(GetRandomInt(0,4))
+    Metadata.push(Math.random(4)+1)
     let PossibleOptions = [0,1,2,3,4,5,6,7]
     shuffle(PossibleOptions)
     const Column1 = ["Timothy","Lisa","Chris","Henry","Kevin","Mark","Marc","Juliet"]
