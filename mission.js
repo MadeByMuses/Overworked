@@ -18,7 +18,7 @@ function MissionStart() {
     let StaffBonuses = document.getElementById("Checkbox2").checked;
 
     if (!CancelMeeting && !StaffBonuses){
-        alert("Please pick at least one todo");
+        alert("Please pick at least one to do");
     }
     else if (isNaN(document.getElementById("TimerSeconds").innerHTML) || (document.getElementById("TimerSeconds").innerHTML.indexOf(' ') >= 0)){
         alert("Please insert the time limit for the custom mission or no spaces in the box")
