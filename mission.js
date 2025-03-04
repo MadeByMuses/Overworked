@@ -113,8 +113,6 @@ function CreateStaffBonuses(MissionIndex) {
     node.setAttribute('id',"StaffBonuses" + String(MissionIndex))
 
     //Add element
-    const Meetings = ["CEO","Orange County Juice","Read Books","Reeded Books","In Metahouse","No Meeting Corporation","Brick Music","Purple TV","Sea-Aeroplanes"]
-    shuffle(Meetings); 
     Metadata.push(Math.random(4)+1)
     let PossibleOptions = [0,1,2,3,4,5,6,7]
     shuffle(PossibleOptions)
