@@ -89,32 +89,32 @@ function OpenPDF(pdfnumber){
     switch (pdfnumber){
         case(0):
             myWindow.document.open();
-            myWindow.document.write(`<embed src="PDFs/WelcomeManual.pdf" width="100%" height="100%" />`);
+            myWindow.document.write(`<title>Welcome Manual</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/WelcomeManual.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
             break;
         case(1):
             myWindow.document.open();
-            myWindow.document.write(`<embed src="PDFs/ToCancelAMeeting.pdf" width="100%" height="100%" />`);
+            myWindow.document.write(`<title>To Cancel A Meeting</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/ToCancelAMeeting.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
             break;
         case(2):
             myWindow.document.open();
-            myWindow.document.write(`<embed src="PDFs/TranscriptStockMeeting.pdf" width="100%" height="100%" />`);
+            myWindow.document.write(`<title>Transcript Stock Meeting</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/TranscriptStockMeeting.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
             break;
         case(3):
             myWindow.document.open();
-            myWindow.document.write(`<embed src="PDFs/ThisCannotBeDeleted.pdf" width="100%" height="100%" />`);
+            myWindow.document.write(`<title>This Cannot Be Deleted</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/ThisCannotBeDeleted.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
             break;
         case(4):
             myWindow.document.open();
-            myWindow.document.write(`<embed src="PDFs/IfYouAreCancelled.pdf" width="100%" height="100%" />`);
+            myWindow.document.write(`<title>If You Are Cancelled</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/IfYouAreCancelled.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
             break;
         case(5):
             myWindow.document.open();
-            myWindow.document.write(`<embed src="PDFs/OrderBonuses.pdf" width="100%" height="100%" />`);
+            myWindow.document.write(`<title>Order Bonuses</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/OrderBonuses.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
     }
 }

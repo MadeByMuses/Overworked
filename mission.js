@@ -47,6 +47,7 @@ function MissionStart() {
             document.getElementById("ToDoList").style.visibility = "visible";
             document.getElementById("ManualArchive").style.visibility = "visible";
             document.getElementById("Timer").style.visibility = "visible";
+   	 document.getElementById("PersonalPortal").style.visibility = "visible";
             Lives = 3;
         },1000);
         setTimeout(function (){
@@ -71,7 +72,6 @@ function AddMission(ID, index) {
 }
 
 function CreateCancelMeeting(MissionIndex) {
-    document.getElementById("PersonalPortal").style.visibility = "visible";
     AssignedMissions.push("CancelMeeting");
     const CancelMeetingPN = ["Delete a meeting","Cancel a meeting","Remove a planned meeting","Cut down on planned meetings","Make sure to reduce meetings"]
     const node = document.createElement('p')
@@ -81,7 +81,7 @@ function CreateCancelMeeting(MissionIndex) {
     //Add element
     const Meetings = ["CEO","Orange County Juice","Read Books","Reeded Books","In Metahouse","No Meeting Corporation","Brick Music","Purple TV","Sea-Aeroplanes"]
     shuffle(Meetings); 
-    Metadata.push(Math.random(4)+3)
+    Metadata.push(Math.floor(Math.random()*4)+3)
     document.getElementById("PersonalPortalGrid").innerHTML += `
         <div class="window">
             <div class="window-body" id="CancelMeeting`+MissionIndex+`">
@@ -105,7 +105,6 @@ function CreateCancelMeeting(MissionIndex) {
 }
 
 function CreateStaffBonuses(MissionIndex) {
-    document.getElementById("PersonalPortal").style.visibility = "visible";
     AssignedMissions.push("StaffBonuses");
     const StaffBonusesPN = ["Add staff bonuses","Order bonuses for staff","Update extras for staff wages","Order staff for finacial bonuses","Order staff bonuses","Add ranking for staff's bonuses"]
     const node = document.createElement('p')
@@ -113,7 +112,8 @@ function CreateStaffBonuses(MissionIndex) {
     node.setAttribute('id',"StaffBonuses" + String(MissionIndex))
 
     //Add element
-    Metadata.push(Math.random(4)+1)
+    Metadata.push(Math.floor(Math.random()*4)+1)
+	console.log(Metadata);
     let PossibleOptions = [0,1,2,3,4,5,6,7]
     shuffle(PossibleOptions)
     const Column1 = ["Timothy","Lisa","Chris","Henry","Kevin","Mark","Marc","Juliet"]
