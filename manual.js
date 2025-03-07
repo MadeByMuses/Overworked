@@ -55,6 +55,22 @@ const Manual5 =`
                 </div>
                 <p class="icon-text">Staff bonuses</p>
             </div>`
+Manuals[6] = new Array("log","logging","category","categorise","day","data","type","types","categorising","weather","sunny","key","code","codeword","keys","pportal","days","date","today")
+const Manual6 = `
+            <div id="Manual6">
+                <div class="ManualPDFIcon" onclick="OpenPDF(6)">
+                    <img src="Images/Weather/Sunny.png" alt="Sun Icon" class="icon" style="width: 50px;">
+                </div>
+                <p class="icon-text">Categorise Day</p>
+            </div>`
+Manuals[7] = new Array("weather","day","sunny","sun","cloud","clouds","cloudy","windy","wind","snowy","snow","thunder","storm")
+const Manual7 = `
+            <div id="Manual7">
+                <div class="ManualPDFIcon" onclick="OpenPDF(7)">
+                    <img src="Images/OfficialPDF.png" alt="OfficialPDF Icon" class="icon" style="width: 50px;">
+                </div>
+                <p class="icon-text">Weather</p>
+            </div>`
 function updateValue() {
     ManualGrid.innerHTML = ``;
     console.log(document.getElementById("Keyword").value)
@@ -78,6 +94,12 @@ function updateValue() {
                     break;
                 case(5):
                     ManualGrid.innerHTML += Manual5;
+                    break;
+                case(6):
+                    ManualGrid.innerHTML += Manual6;
+                    break;
+                case(7):
+                    ManualGrid.innerHTML += Manual7;
                     break;
            }
         }
@@ -116,5 +138,17 @@ function OpenPDF(pdfnumber){
             myWindow.document.open();
             myWindow.document.write(`<title>Order Bonuses</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/OrderBonuses.pdf" width="100%" height="100%" />`);
             myWindow.document.close();
+            break;
+        case(6):
+            myWindow.document.open();
+            myWindow.document.write(`<title>Categorise Day</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/LogDayType.pdf" width="100%" height="100%" />`);
+            myWindow.document.close();
+            break;
+        case(7):
+            myWindow.document.open();
+            myWindow.document.write(`<title>Order Bonuses</title><link rel="icon" type="image/x-icon" href="Images/ManualArchive.png"><embed src="PDFs/Weather.pdf" width="100%" height="100%" />`);
+            myWindow.document.close();
+            break;
+
     }
 }

@@ -16,8 +16,9 @@ function MissionStart() {
     AssignedMissions = [];
     let CancelMeeting = document.getElementById("Checkbox1").checked;
     let StaffBonuses = document.getElementById("Checkbox2").checked;
+    let LogDayType = document.getElementById("Checkbox3").checked;
 
-    if (!CancelMeeting && !StaffBonuses){
+    if (!CancelMeeting && !StaffBonuses && !LogDayType){
         alert("Please pick at least one to do");
     }
     else if (isNaN(document.getElementById("TimerSeconds").innerHTML) || (document.getElementById("TimerSeconds").innerHTML.indexOf(' ') >= 0)){
@@ -35,6 +36,7 @@ function MissionStart() {
         //Checks if it is tick and adds it to the list
         if(CancelMeeting){IDsOfTasks.push(1)}
         if(StaffBonuses){IDsOfTasks.push(2)}
+        if(LogDayType){IDsOfTasks.push(3)}
         shuffle(IDsOfTasks);
         document.getElementById("ToDoListText").innerHTML=``;
         document.getElementById("PersonalPortalGrid").innerHTML = ``;
@@ -68,6 +70,8 @@ function AddMission(ID, index) {
         case 2:
             ToDoListText.appendChild(CreateStaffBonuses(index));
             break;
+        case 3:
+            ToDoListText.appendChild(CreateLogDayType(index));
     }
 }
 
@@ -157,6 +161,33 @@ function CreateStaffBonuses(MissionIndex) {
             <br>
             <button onclick="StaffBonusesCheck(`+MissionIndex+`)"style="margin-left: 20px;">Confirm Selection</button>
             <p id="StaffBonusesConfirmation`+MissionIndex+`"></p>
+        </div>`
+    return node;
+}
+
+function CreateLogDayType(MissionIndex){
+    AssignedMissions.push("LogDayType");
+    const LogDayTypePN = ["Correctly log what day it is","Log type of day","Categorise type of day","Log day type","Categorise day type","Log today's category"]
+    const node = document.createElement('p')
+    node.appendChild(document.createTextNode(LogDayTypePN[Math.floor(Math.random()*LogDayTypePN.length)]))
+    node.setAttribute('id',"LogDayType" + String(MissionIndex))
+
+    //Add element
+    Metadata.push("LDT");
+	console.log(Metadata);
+    document.getElementById("PersonalPortalGrid").innerHTML += `
+        <div class="window">
+            <div class="window-body" id="LogDayType`+MissionIndex+`">
+                <h3>Virtual day logger</h3>
+                <p>Please type in the exact key words for today:</p>
+                <div class="field-row">
+                    <label for="LogDayType`+MissionIndex+`TextBox">Key</label>
+                    <input id="LogDayType`+MissionIndex+`TextBox" type="text" />
+                </div>
+                <br>
+                <button onclick="LogDayTypeCheck(`+MissionIndex+`)"style="margin-left: 20px;">Confirm Input</button>
+                <p id="LogDayTypeConfirmation`+MissionIndex+`"></p>
+            </div>
         </div>`
     return node;
 }
@@ -559,6 +590,125 @@ function StaffBonusesCheck(MissionIndex){
     }
 }
 
+function LogDayTypeCheck(MissionIndex){
+    const WeatherTokens = ["ODD","SUN","CLO","SNO","THU"]
+    let WeatherKey = WeatherTokens[WeatherID]
+    const PreDayKey = TodayDate.getDate();
+    let DayKey
+    if (Math.floor(PreDayKey/10) == 0){
+        DayKey = flipInt(PreDayKey) * 10;
+    }
+    else{
+        DayKey = flipInt(PreDayKey);
+    }
+    let OtherFactor
+    if (WeatherID == 1){
+        if (DayKey == 2|| DayKey == 11|| DayKey == 13|| DayKey == 31 || DayKey == 41 || DayKey == 43 || DayKey == 53|| DayKey == 61 || DayKey == 71 || DayKey == 73 || DayKey == 83){
+            OtherFactor="Cold"
+        }
+        else if (DayKey < 50){
+            OtherFactor="One"
+        }
+        else if (DayKey % 2 == 1){
+            OtherFactor="Windy"
+        }
+        else{
+            OtherFactor="Odd"
+        }
+    }
+    else if (WeatherID == 2){
+        if (DayKey == flipInt(DayKey)){
+            OtherFactor = "Windy"
+        }
+        else if (DayKey < 50){
+            OtherFactor="Normal?"
+        }
+        else if (DayKey % 2 == 1){
+            OtherFactor="Cold"
+        }
+        else{
+            OtherFactor="Odd"
+        }
+    }
+    else if (WeatherID == 3){
+        if (DayKey == 2|| DayKey == 11|| DayKey == 13|| DayKey == 31 || DayKey == 41 || DayKey == 43 || DayKey == 53|| DayKey == 61 || DayKey == 71 || DayKey == 73 || DayKey == 83){
+            OtherFactor="Normal"
+        }
+        if (DayKey == flipInt(DayKey)){
+            OtherFactor = "Hot"
+        }
+        else if (DayKey % 2 == 1){
+            OtherFactor="Humid?"
+        }
+        else{
+            OtherFactor="Odd"
+        }
+    }
+    else if (WeatherID == 4 || WeatherID == 0){
+        if (DayKey == 2|| DayKey == 11|| DayKey == 13|| DayKey == 31 || DayKey == 41 || DayKey == 43 || DayKey == 53|| DayKey == 61 || DayKey == 71 || DayKey == 73 || DayKey == 83){
+            OtherFactor="Windy"
+        }
+        if (DayKey == flipInt(DayKey)){
+            OtherFactor = "Humid"
+        }
+        else if (DayKey % 2 == 1){
+            OtherFactor="Two"
+        }
+        else{
+            OtherFactor="Odd"
+        }
+    }
+
+    if (TodayDate.getDay() == 0 || TodayDate.getDate() == 3){
+        if (document.getElementById("LogDayType"+MissionIndex+"TextBox").value == OtherFactor+"/"+WeatherKey+"/"+DayKey){
+            MissionComplete(MissionIndex,3);
+        }
+        else{
+            MissionFail(MissionIndex,3);
+        }
+    }
+    else if (TodayDate.getDay() == 1){
+        if (document.getElementById("LogDayType"+MissionIndex+"TextBox").value == WeatherKey+"/"+DayKey+"/"+OtherFactor){
+            MissionComplete(MissionIndex,3)
+        }
+        else{
+            MissionFail(MissionIndex,3)
+        }
+    }
+    else if (TodayDate.getDay() == 2){
+        if (document.getElementById("LogDayType"+MissionIndex+"TextBox").value == DayKey+"/"+WeatherKey+"/"+OtherFactor){
+            MissionComplete(MissionIndex,3)
+        }
+        else{
+            MissionFail(MissionIndex,3)
+        }
+    }
+    else if (TodayDate.getDay() == 4){
+        if (document.getElementById("LogDayType"+MissionIndex+"TextBox").value == OtherFactor+"/"+WeatherKey+"/"){
+            MissionComplete(MissionIndex,3)
+        }
+        else{
+            MissionFail(MissionIndex,3)
+        }
+    }
+    else if (TodayDate.getDay() == 5){
+        if (document.getElementById("LogDayType"+MissionIndex+"TextBox").value == DayKey+"/"+OtherFactor+"/"+WeatherKey){
+            MissionComplete(MissionIndex,3)
+        }
+        else{
+            MissionFail(MissionIndex,3)
+        }
+    }
+    else if (TodayDate.getDay() == 6){
+        if (document.getElementById("LogDayType"+MissionIndex+"TextBox").value == OtherFactor+"/"+DayKey+"/"+WeatherKey){
+            MissionComplete(MissionIndex,3)
+        }
+        else{
+            MissionFail(MissionIndex,3)
+        }
+    }
+}
+
 function MissionComplete(MissionIndex,MissionID){
     document.getElementById("ToDoListText").children[MissionIndex].style.textDecoration = "line-through";
     MissionsToDoLeft -= 1;
@@ -569,6 +719,10 @@ function MissionComplete(MissionIndex,MissionID){
     else if(MissionID == 2){
         document.getElementById("StaffBonusesConfirmation"+MissionIndex).innerHTML = "The ranking is correctly chosen!"
         document.getElementById("StaffBonusesConfirmation"+MissionIndex).style.color = "ForestGreen";
+    }
+    else if (MissionID == 3){
+        document.getElementById("LogDayTypeConfirmation"+MissionIndex).innerHTML = "The logged key is correct"
+        document.getElementById("LogDayTypeConfirmation"+MissionIndex).style.color = "ForestGreen";
     }
 }
 
@@ -581,6 +735,10 @@ function MissionFail(MissionIndex,MissionID){
     else if(MissionID == 2){
         document.getElementById("StaffBonusesConfirmation"+MissionIndex).innerHTML = "This ranking has failed Omnicorp standards"
         document.getElementById("StaffBonusesConfirmation"+MissionIndex).style.color = "Red";
+    }
+    else if (MissionID == 3){
+        document.getElementById("LogDayTypeConfirmation"+MissionIndex).innerHTML = "The inputted code/key is incorrect"
+        document.getElementById("LogDayTypeConfirmation"+MissionIndex).style.color = "Red";
     }
 }
 

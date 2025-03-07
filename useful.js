@@ -1,9 +1,3 @@
-function GetRandomInt(min, max) {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
-}
-
 function shuffle(array) {
     let currentIndex = array.length;
   
@@ -31,4 +25,16 @@ function rankings(array) {
       .map((a, i) => [...a, i + 1])
       .sort((a, b) => a[1] - b[1])
       .map(a => a[2]);
+}
+
+function flipInt(n){
+    var digit, result = 0
+
+    while( n ){
+        digit = n % 10  //  Get right-most digit. Ex. 123/10 → 12.3 → 3
+        result = (result * 10) + digit  //  Ex. 123 → 1230 + 4 → 1234
+        n = n/10|0  //  Remove right-most digit. Ex. 123 → 12.3 → 12
+    }  
+  
+    return result
 }

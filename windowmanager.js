@@ -1,7 +1,31 @@
 let windowopen = false;
+
 const daysoftheweek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 let TodayDate = new Date;
 document.getElementById("TodayIs").innerHTML = "Today is: " + daysoftheweek[TodayDate.getDay()]
+
+let WeatherID = Math.floor(Math.random()*5)
+if (WeatherID == 0){
+  document.getElementById("WeatherIcon").src="Images/Weather/Odd.png"
+  document.getElementById("WeatherIcon").setAttribute('alt', 'Odd Weather')
+}
+else if (WeatherID == 1){
+  document.getElementById("WeatherIcon").src="Images/Weather/Sunny.png"
+  document.getElementById("WeatherIcon").setAttribute('alt', 'Sunny Weather')
+}
+else if (WeatherID == 2){
+  document.getElementById("WeatherIcon").src="Images/Weather/Cloudy.png"
+  document.getElementById("WeatherIcon").setAttribute('alt', 'Cloudy Weather')
+}
+else if (WeatherID == 3){
+  document.getElementById("WeatherIcon").src="Images/Weather/Snowy.png"
+  document.getElementById("WeatherIcon").setAttribute('alt', 'Snowy Weather')
+}
+else if (WeatherID == 4){
+  document.getElementById("WeatherIcon").src="Images/Weather/Thunder.png"
+  document.getElementById("WeatherIcon").setAttribute('alt', 'Thunder Weather')
+}
+
 //Make the DIV element draggagle:
 DragElement(document.getElementById("SettingsWindow"));
 DragElement(document.getElementById("MissionsWindow"));
