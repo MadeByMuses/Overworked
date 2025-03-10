@@ -126,39 +126,15 @@
                             <li>
                                 <summary>Work-expierence🎉</summary>
                                 <ul>
-                                    <li><a style="cursor: crosshair;">Baby steps</a></li>
+                                    <li><a style="cursor: crosshair;" onclick="MissionDetailer(1)">Baby steps</a></li>
+                                    <li><a style="cursor: crosshair;" onclick="MissionDetailer(2)">Two little feet</a></li>
+                                    <li><a style="cursor: crosshair;" onclick="MissionDetailer(3)">Speedy infant</a></li>
+                                    <li><a style="cursor: crosshair;" onclick="MissionDetailer(4)">Growth spurt</a></li>
                                 </ul>
                             </li>
                             </ul>
                         </div>
-                        <div>
-                            <h3 id="MissionName" style="text-decoration: underline;"></h3>
-                            <div id="CustomMissionPanel" style="visibility: hidden;">
-                                <div class="field-row">
-                                    <label for="TimerSeconds">Seconds: </label>
-                                    <input id="TimerSeconds" type="text" /></label>
-                                </div>
-                                <br>
-                                <fieldset  style="height: 100px;max-height: 100px;overflow-y: scroll;">
-                                    <legend>Todo's</legend>
-                                    <div class="field-row">
-                                        <input type="checkbox" id="Checkbox1">
-                                        <label for="Checkbox1">Cancel Meeting</label>
-                                    </div>
-                                    <div class="field-row">
-                                        <input type="checkbox" id="Checkbox2">
-                                        <label for="Checkbox2">Staff Bonuses</label>
-                                    </div>
-                                    <div class="field-row">
-                                        <input type="checkbox" id="Checkbox3">
-                                        <label for="Checkbox3">Log Day Type</label>
-                                    </div>
-                                </fieldset>
-                            </div>
-                            <br><br>
-                            <div style="padding-left: 125px;">
-                                <button onclick="MissionStart()" style="visibility: hidden;" id="MissionButton" class="default">Begin</button>
-                            </div>
+                        <div id="SideMissionBox">
                         </div>
                     </div>
                 </div>

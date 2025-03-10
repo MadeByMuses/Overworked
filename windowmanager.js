@@ -115,9 +115,7 @@ function MissionsWindowClose() {
   windowopen = false
   document.getElementById('MissionsWindow').style.visibility = "hidden";
   document.getElementById('BackgroundWindow').style.visibility = "hidden";
-  document.getElementById("MissionName").textContent = "";
-  document.getElementById("CustomMissionPanel").style.visibility = "hidden";
-  document.getElementById("MissionButton").style.visibility = "hidden";
+  document.getElementById("MissionButton").style.visibility = "";
 }
 
 document.getElementById('PersonalPortal').addEventListener('click', PersonalPortalWindowOpen);
@@ -198,4 +196,5 @@ function BackToMainMenu(){
   document.getElementById("Timer").style.visibility = "hidden";
   document.getElementById("ToDoList").style.visibility = "hidden";
   document.getElementById("PersonalPortal").style.visibility = "hidden";
+	document.getElementById("SideMissionBox").innerHTML = "";
 }

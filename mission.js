@@ -5,11 +5,103 @@ var Metadata = [];
 var Lives = -1;
 var LastMissionInteracted = 0;
 function MissionDetailer(id) {
-    if (id < 0){
-        document.getElementById("MissionName").textContent = "Custom Mission";
-        document.getElementById("CustomMissionPanel").style.visibility = "visible";
-        document.getElementById("MissionButton").style.visibility = "visible";
-    }
+	if (id == -1){
+		document.getElementById("SideMissionBox").innerHTML = `
+                            <h3 id="MissionName" style="text-decoration: underline;"></h3>
+                            <div id="CustomMissionPanel">
+                                <div class="field-row">
+                                    <label for="TimerSeconds">Seconds: </label>
+                                    <input id="TimerSeconds" type="text" /></label>
+                                </div>
+                                <br>
+                                <fieldset  style="height: 100px;max-height: 100px;overflow-y: scroll;">
+                                    <legend>Todo's</legend>
+                                    <div class="field-row">
+                                        <input type="checkbox" id="Checkbox1">
+                                        <label for="Checkbox1">Cancel Meeting</label>
+                                    </div>
+                                    <div class="field-row">
+                                        <input type="checkbox" id="Checkbox2">
+                                        <label for="Checkbox2">Staff Bonuses</label>
+                                    </div>
+                                    <div class="field-row">
+                                        <input type="checkbox" id="Checkbox3">
+                                        <label for="Checkbox3">Log Day Type</label>
+                                    </div>
+                                </fieldset>
+                            </div>`
+	}
+	else{
+		document.getElementById("SideMissionBox").innerHTML = `
+                            <h3 id="MissionName" style="text-decoration: underline;"></h3>
+							<div id="MissionPanel" style="height: 150px;max-height: 150px;overflow-y: scroll;">
+								<div class ="tree-view" id="MissionPanelTree">
+								</div>
+							</div>
+							
+                                <div class="field-row" style="display:none">
+                                    <label for="TimerSeconds">Seconds: </label>
+                                    <input id="TimerSeconds" type="text" /></label>
+                                </div>
+                                <fieldset  style="display:none;height: 100px;max-height: 100px;overflow-y: scroll;">
+                                    <legend>Todo's</legend>
+                                    <div class="field-row">
+                                        <input type="checkbox" id="Checkbox1">
+                                        <label for="Checkbox1">Cancel Meeting</label>
+                                    </div>
+                                    <div class="field-row">
+                                        <input type="checkbox" id="Checkbox2">
+                                        <label for="Checkbox2">Staff Bonuses</label>
+                                    </div>
+                                    <div class="field-row">
+                                        <input type="checkbox" id="Checkbox3">
+                                        <label for="Checkbox3">Log Day Type</label>
+                                    </div>
+                                </fieldset>`
+	}
+	document.getElementById("SideMissionBox").innerHTML += `
+                            <br><br>
+                            <div style="padding-left: 125px;">
+                                <button onclick="MissionStart()" style="visibility: hidden;" id="MissionButton" class="default">Begin</button>
+                            </div>`
+	
+    document.getElementById("Checkbox1").checked = false;
+    document.getElementById("Checkbox2").checked = false;
+    document.getElementById("Checkbox3").checked = false;
+	switch (id){
+		case (-1):
+			document.getElementById("MissionName").textContent = "Custom Mission";
+			break;
+		case (1):
+			console.log("Yay");
+			document.getElementById("MissionName").textContent = "Baby steps";
+			document.getElementById("MissionPanelTree").innerHTML = `<li>Now I am not one to judge but it is quite humiliating how easy these simple tasks we have for new staff at Omnicorp. So do not fear that you are going to fail this... </li><li>In this mission you must do a quick meeting removal for Sharon who is in building two</li><li>Infact she is dead, but we must keep her on the system as she has some ties to the shareholders so we say she is still working with her meetings but we need people like you to delete it.</li><li>And we have transfered her meetings over to you, so do not worry about finding her password (you creep).</li>`
+			document.getElementById("Checkbox1").checked =  true;
+			document.getElementById("TimerSeconds").value = 150;
+			break;
+		case (2):
+			document.getElementById("MissionName").textContent = "Two little feet"
+			document.getElementById("MissionPanelTree").innerHTML = `<li>I do not like the name of this mission in my honest opinion, I may go and call HR again about Julia's contribution to the recuriment scheme actually... it may mean she will stop putting fish in the microwave</li><li>Instead of one step, there are two! You just need to sort Sharon's meetings again to delete them and also, for my sake, pick which individual should get the company's finacial bonus.</li><li>Is it odd how we are putting the new individual at the highest power of selecting basically their extra wages? Yes, but that was a tagline in Omnicorp's slogan in 2003 to 2007 (Omnicorp, the corporation that has an odd knee) to attract disabled customers. It is now apparent that the marketing team did not hit the mark with that.</li>`
+			document.getElementById("Checkbox1").checked =  true;
+			document.getElementById("Checkbox2").checked = true;
+			document.getElementById("TimerSeconds").value = 150;
+			break;
+		case (3):
+			document.getElementById("MissionName").textContent = "Speedy infant"
+			document.getElementById("MissionPanelTree").innerHTML = `<li>Oh so about Sharon? The dead one? Yeah... they caught on</li><li>So her funeral is being held today and we forgot to clean her meetings again so can you quickly do this for Omnicorp... it saves Henry manually writing the database again on his phone</li>`
+			document.getElementById("Checkbox1").checked =  true;
+			document.getElementById("TimerSeconds").value = 60;
+			break;
+		case (4):
+			document.getElementById("MissionName").textContent = "Growth spurt"
+			document.getElementById("MissionPanelTree").innerHTML = `<li>We are nearly finished with the work expierence at Omnicorp, I do hope you are enjoying your time at Omnicorp (It provides a wage bonus if you are liking it)</li><li>Talking about Bonuses, you need to do that again, and remember to log today's day too! You need to be sure that what you insert it logical, and looking at your progress so far you definitely need to put emphasis in that field</li>`
+			document.getElementById("Checkbox2").checked =  true;
+			document.getElementById("Checkbox3").checked = true;
+			document.getElementById("TimerSeconds").value = 135;
+			break;
+	}
+	
+	document.getElementById("MissionButton").style.visibility = "visible";
 }
 
 function MissionStart() {
@@ -603,7 +695,7 @@ function LogDayTypeCheck(MissionIndex){
     }
     let OtherFactor
     if (WeatherID == 1){
-        if (DayKey == 2|| DayKey == 11|| DayKey == 13|| DayKey == 31 || DayKey == 41 || DayKey == 43 || DayKey == 53|| DayKey == 61 || DayKey == 71 || DayKey == 73 || DayKey == 83){
+        if (DayKey == 2|| DayKey == 3|| DayKey == 11|| DayKey == 13|| DayKey == 31 || DayKey == 41 || DayKey == 43 || DayKey == 53|| DayKey == 61 || DayKey == 71 || DayKey == 73 || DayKey == 83){
             OtherFactor="Cold"
         }
         else if (DayKey < 50){
